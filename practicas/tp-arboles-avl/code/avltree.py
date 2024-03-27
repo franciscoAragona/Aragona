@@ -274,5 +274,5 @@ def deleteR(nodeT,k):
     if nodeT.rightnode!=None:
       return deleteR(nodeT.rightnode,k)
     if nodeT.leftnode!=None:
-      return deleteR(nodeT.leftnode,k)
-
+      return deleteR(nodeT.leftnode,k)      
+ 
