@@ -12,21 +12,39 @@ def findKey(L,c):
             return L[i]
     return None
 
+def search(T,cad):
+    if T.root==None:
+        return False
+
+    n=0
+    node=T.root.children
+
+    while findKey(node,cad[n]) is not None:
+        node=findKey(node,cad[n])
+        
+        if n+1 is len(cad) and node.isEndOfWord is True:
+                return True
+        elif n+1 is len(cad) and node.isEndOfWord is False:
+                return False
+        if node.children is None:
+                return False
+                
+        n=n+1
+        node=node.children
+    return False
+
+
 def insert(T,cad):
     n=0
-    print("insert")
 
     if T.root==None:
-        print("caso 1")
         T.root=TrieNode()
         insertR(T.root,cad)
         return T
     
-    print("insert")
     node=findKey(T.root.children,cad[n])
 
     if node is not None:
-        print("caso 2")
         n=n+1
         node=node.children
 
@@ -35,21 +53,18 @@ def insert(T,cad):
             if n+1==len(cad):
                 node.isEndOfWord=True
                 return T
-                    
+            
             n=n+1
             if node.children is None:
-                print(cad[n:])
                 insertR(node,cad[n:])
                 return T
             else:
                 node=node.children
 
-        print(": ", cad[n:])
         insertR(node[0].parent,cad[n:])
-        
         return T
+    
     else:
-        print("insert")
         t=TrieNode()
         t.key=cad[0]
         T.root.children.append(t)

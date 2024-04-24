@@ -42,7 +42,9 @@ lee(T1.root.children[0])
 T1=trie.insert(T1,"colorear")
 T1=trie.insert(T1,"polar")
 lee(T1.root.children[1])
-
+print(trie.search(T1,"cola"))
+T1=trie.insert(T1,"cola")
+print(trie.search(T1,"cola"))
 
 
 
