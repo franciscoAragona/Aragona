@@ -19,6 +19,7 @@ def lee(node):
         lee(node.children[0])
     
 T=Trie()
+T1=Trie()
 T.root=TrieNode()
 A=TrieNode()
 A.key="d"
@@ -32,6 +33,15 @@ lee(A)
 trie.insertR(C,"do")
 print("!")
 lee(A)
+#lee(T1.root.children)
+print("------------")
+T1=trie.insert(T1,"color")
+lee(T1.root.children[0])
+T1=trie.insert(T1,"colores")
+lee(T1.root.children[0])
+T1=trie.insert(T1,"colorear")
+T1=trie.insert(T1,"polar")
+lee(T1.root.children[1])
 
 
 
