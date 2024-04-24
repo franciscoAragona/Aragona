@@ -5,12 +5,56 @@ class TrieNode:
     parent = None
     children = None   
     key = None
-    isEndOfWord = False
+    isEndOfWord = False  
+
+def delete(T,cad):
+    if search(T,cad) is False:
+          return False
+    node=searchLast(T,cad)
+    if node.children is not None:
+         node.isEndOfWord=False
+         return True
+    print(searchLast(T,cad).key)
+    deleteR(searchLast(T,cad))
+
+def deleteR(node):
+    print(": ", node.key)
+    if len(node.parent.children) == 1:
+        node.parent.children = None
+    else:
+         node.parent.children.remove(node)  
+         return True  
+    if node.parent.isEndOfWord is True or node.parent is None:
+         return True
+    deleteR(node.parent)
+    return
+
 def findKey(L,c):
     for i in range(len(L)):
         if L[i].key==c:
             return L[i]
     return None
+
+def searchLast(T,cad):
+    if T.root==None:
+        return False
+
+    n=0
+    node=T.root.children
+
+    while findKey(node,cad[n]) is not None:
+        node=findKey(node,cad[n])
+        
+        if n+1 is len(cad) and node.isEndOfWord is True:
+                return node
+        elif n+1 is len(cad) and node.isEndOfWord is False:
+                return False
+        if node.children is None:
+                return False
+                
+        n=n+1
+        node=node.children
+    return False
 
 def search(T,cad):
     if T.root==None:
