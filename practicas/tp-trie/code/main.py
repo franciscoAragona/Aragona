@@ -31,6 +31,12 @@ C.key="e"
 C.isEndOfWord=True
 A.children=[C]
 T.root.children=[A,B]
+T1=trie.insert(T1,"color")
+T1=trie.insert(T1,"colar")
+T1=trie.insert(T1,"colas")
+trie.patron(T1,"col",5)
+lee(T1.root.children[0])
+"""
 lee(A)
 trie.insertR(C,"do")
 print("------------")
@@ -52,14 +58,18 @@ T1=trie.insert(T1,"cola")
 print(trie.search(T1,"cola"))
 print(len([]))
 print("------------")
-lee(A)
+#lee(A)
 #trie.delete(T,"de")
 print("------------")
-lee(A)
-trie.delete(T,"dedo")
+#lee(A)
+#trie.delete(T,"dedo")
 print("------------")
-lee(A)
-
+#lee(A)
+print("------------")
+#trie.delete(T1,"polar")
+#lee(T1.root.children[1])
+#print(T1.root.children)
+"""
 
 
     
