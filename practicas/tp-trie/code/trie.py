@@ -141,28 +141,52 @@ def insertR(node,cad):
     insertR(t,cadAux)      
 
 def patron(T,p,n): #(trie, patron, tamaño)
-    print("patron")
-    if len(p)<n:
-        print("caso1")
+    if len(p)>n:
         return False
+    
     #ultima letra del prefix
     uP = searchLast(T,p)
+
     if len(p)==n:
         if search(T,p):
-            print("caso2")
             return print(p)
         else:
-            print("caso3")
             return False
-    return patronR(uP.children,p,len(p),n)       
+        
+    return patronR(uP.children, p, len(p), n, False)       
               
-def patronR(lista, cad, cont, n):
-    print(cad)
-    for i in range(lista):
-        cad=cad+lista[i]
-        if cont == n and lista[i].isEndOfWord is True:
-            return print(cad)
-        elif cont == n:
+def patronR(lista, cad, cont, n, endWord):
+    if cont == n and endWord is True:
+        return print(cad)
+    elif lista is None:
+        return 
+       
+    for i in range(len(lista)):
+        if cont == n: 
              return 
-        else:
-             patronR(lista[i].children,cad,cont+1,n)
+        else:    
+            patronR(lista[i].children, cad+lista[i].key, cont+1, n, lista[i].isEndOfWord)
+
+def compare(t1,t2):
+
+    l1=["True"]
+    l2=["True"]
+    l1= busquedaR(t1.root.children,t2,"", False,l1)
+    l2= busquedaR(t2.root.children,t1,"", False,l2)
+
+    if len(l1) != len(l2) or l1[0] is False or l2[0] is False:
+         return False
+    return True
+
+def busquedaR(lista,t, cad, endWord,listAux):
+    if endWord is True:
+        listAux.append(cad)
+        if search(t,cad) is False:
+            listAux[0] = "False"
+
+    if lista is None:
+        print(listAux)
+        return listAux
+    
+    for i in range(len(lista)):    
+            busquedaR(lista[i].children, t, cad+lista[i].key,  lista[i].isEndOfWord,listAux)
