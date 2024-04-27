@@ -169,10 +169,10 @@ def patronR(lista, cad, cont, n, endWord):
 
 def compare(t1,t2):
 
-    l1=["True"]
-    l2=["True"]
-    l1= busquedaR(t1.root.children,t2,"", False,l1)
-    l2= busquedaR(t2.root.children,t1,"", False,l2)
+    l1=[True]
+    l2=[True]
+    busquedaR(t1.root.children,t2,"", False,l1)
+    busquedaR(t2.root.children,t1,"", False,l2)
 
     if len(l1) != len(l2) or l1[0] is False or l2[0] is False:
          return False
@@ -182,11 +182,40 @@ def busquedaR(lista,t, cad, endWord,listAux):
     if endWord is True:
         listAux.append(cad)
         if search(t,cad) is False:
-            listAux[0] = "False"
+            listAux[0] = False
 
     if lista is None:
-        print(listAux)
         return listAux
     
     for i in range(len(lista)):    
-            busquedaR(lista[i].children, t, cad+lista[i].key,  lista[i].isEndOfWord,listAux)
+        busquedaR(lista[i].children, t, cad+lista[i].key,  lista[i].isEndOfWord,listAux)
+
+def invertir_palabra(cad):
+     return cad[::-1]
+
+
+
+def cad_invertida(T):
+    valor=[False]
+    def recorreT(T,lista, cad, endWord,valor):
+        if endWord is True and search(T,invertir_palabra(cad)):
+            print(cad)
+            valor[0] = True
+            return 
+        if lista is None:
+            return  
+        
+        for i in range(len(lista)):    
+            recorreT(T,lista[i].children, cad+lista[i].key,  lista[i].isEndOfWord,valor)
+    recorreT(T,T.root.children, "", False,valor)
+    return valor[0]
+
+def Autocomplete(T,cad):
+     
+    def AutocompleteR(node,cad):
+        if len(node.children) == 1:
+            cad=cad+node.children[0].key
+            AutocompleteR(node.children[0],cad)
+        return cad
+    return print(AutocompleteR(searchLast(T.root.children,cad),""))
+        
