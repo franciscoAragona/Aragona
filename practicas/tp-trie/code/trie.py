@@ -199,7 +199,6 @@ def cad_invertida(T):
     valor=[False]
     def recorreT(T,lista, cad, endWord,valor):
         if endWord is True and search(T,invertir_palabra(cad)):
-            print(cad)
             valor[0] = True
             return 
         if lista is None:
@@ -217,7 +216,6 @@ def Autocomplete(T,cad):
             
             cad=cad+node.children[0].key
             if node.children[0].isEndOfWord is True:
-                print(":  ", cad)
                 l[0]=cad
                 return
             AutocompleteR(node.children[0],cad,l)
