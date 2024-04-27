@@ -28,11 +28,11 @@ def lee(node):
     if node.children != None:
         lee(node.children[0])
 T1=Trie()
-T1=trie.insert(T1,"color")
-T1=trie.insert(T1,"colores")
-T1=trie.insert(T1,"colorear")
-T1=trie.insert(T1,"polar")
-print(trie.Autocomplete(T1,"co"))
+#T1=trie.insert(T1,"color")
+T1=trie.insert(T1,"madera")
+T1=trie.insert(T1,"mama")
+#T1=trie.insert(T1,"polar")
+print(trie.Autocomplete(T1,"ma"))
 """
 lee(A)
 trie.insertR(C,"do")

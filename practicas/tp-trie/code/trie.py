@@ -211,11 +211,19 @@ def cad_invertida(T):
     return valor[0]
 
 def Autocomplete(T,cad):
-     
-    def AutocompleteR(node,cad):
+    l=[""]
+    def AutocompleteR(node,cad,l):
         if len(node.children) == 1:
+            
             cad=cad+node.children[0].key
-            AutocompleteR(node.children[0],cad)
-        return cad
-    return print(AutocompleteR(searchLast(T.root.children,cad),""))
+            if node.children[0].isEndOfWord is True:
+                print(":  ", cad)
+                l[0]=cad
+                return
+            AutocompleteR(node.children[0],cad,l)
+        else:
+            l[0]=cad
+            return
         
+    AutocompleteR(searchLast(T,cad),"",l)
+    return l[0]
