@@ -84,7 +84,6 @@ def search(T,cad):
         node=node.children
     return False
 
-
 def insert(T,cad):
     n=0
 
@@ -192,8 +191,6 @@ def busquedaR(lista,t, cad, endWord,listAux):
 
 def invertir_palabra(cad):
      return cad[::-1]
-
-
 
 def cad_invertida(T):
     valor=[False]
