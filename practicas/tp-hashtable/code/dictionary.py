@@ -72,7 +72,7 @@ def delete(D,key):
             slot[i].key=None
             return D
     return D
-
+"""
 m=9
 D=creat(m)
 print(D)
@@ -86,3 +86,4 @@ print(search(D,16))
 lee(D)
 delete(D,15)
 lee(D)
+"""
