@@ -9,7 +9,10 @@ def lee(D):
             print(D[i].key," : ",D[i].value)
         else:
             for j in range(len(D[i])):
-                print(D[i][j].key,":",D[i][j].value, end=" ---> ")
+                if j != len(D[i])-1:
+                    print(D[i][j].key,":",D[i][j].value, end=" ---> ")
+                else:
+                    print(D[i][j].key,":",D[i][j].value, end="")
             print()
 #crea un lista de tamaño m
 def creat(m):
@@ -23,7 +26,7 @@ def hashResto(k,m):
             # ord() devuelve el valor que representa en el código Unicode
             return ord(k) % m
         else:
-            return len(K) % m
+            return len(k) % m
     return k % m
 
 #insert de un elemetnon en el diccionario ya creado
@@ -60,13 +63,15 @@ def search(D,key):
 
 
 def delete(D,key):
+    #busca el slot donde deberia estar la key q buscamos
     slot=D[hashResto(key,len(D))]
-    print(slot)
+    #caso de que el slot sea una lista
     if type(slot) is list:
         for i in range(len(slot)):
            if slot[i].key == key:
                 slot[i].key=None
                 return D
+    #caso en el que no es una lista, pero no esta vacio
     elif slot is not None:
         if slot.key == key:
             slot[i].key=None
