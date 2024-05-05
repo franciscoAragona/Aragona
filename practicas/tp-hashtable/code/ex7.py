@@ -1,5 +1,27 @@
 from dictionary import *
 
+def compresion(cad):
+    cadAux=""
+    cont=1
+    #recorro la palabra de tamaño n, asique la complejidad temporal es O(n)
+    for x in range(1, len(cad)):
+        #llevo un conteo de todas las letras que son iguales a Cad[x-1]
+        if cad[x] == cad[x-1]:
+            cont += 1
+        else:
+            #cuando el caracter x es distinto del x-1 concatena el caracter x-1 y el cont
+            cadAux += cad[x-1] + str(cont)
+            #en la siguiente iteracion la letra x-1 va a ser nuestra x actual por lo que hay que contarla una vez
+            cont=1
+    #cuando se sale del bucle, el ultimo caracter no se llega a guardar, por eso hay q agregar esta linea
+    cadAux += cad[-1] + str(cont)
+    #se compaaran las cadenas y se devuelve la mas corta
+    if len(cad)>len(cadAux):
+        return cadAux
+    else:
+        return cad
+"""
+#no use esto pq era mas complejo de lo q pense, pero est abuena la implementacion del hashCad
 def insertCad(D, key, value):
     slot= hashCad(key)
     node=dicNode()
@@ -17,28 +39,12 @@ def insertCad(D, key, value):
         D[slot].append(node)
     return D
 
-def compresion(cad):
-    d=creat(52)
-    cadAux=cad[0]
-    cadActual=cad[0]
-    for c in cad:
-        insertCad(d,c,c)
-    for x in range(1,len(cad)):
-        if cadActual != cad[x]:
-            if type(d[hashCad(cadActual)]) is list:
-                cadAux=cadAux+str(len(d[hashCad(cadActual)]))+cad[x]
-                cadActual=cad[x]
-            else:
-                cadAux=cadAux+"1"
-            print(cadAux)
-
-    return d
-
 def hashCad(key):
     if key.isupper():
         return ord(key)-ord("A")
     else:
         return ord(key)-ord("a")+26
+"""
 
 print(ord("a"))
 print(ord("z"))
@@ -53,4 +59,5 @@ print("###########")
 
 #d=compresion("abcdefghijklmnopqrstuwvxyz".upper())
 d=compresion("aaabbaaabc")
+d=compresion("a")
 #lee(d)
