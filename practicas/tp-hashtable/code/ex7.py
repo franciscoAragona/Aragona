@@ -1,5 +1,3 @@
-from dictionary import *
-
 def compresion(cad):
     cadAux=""
     cont=1
@@ -20,6 +18,12 @@ def compresion(cad):
         return cadAux
     else:
         return cad
+    
+d=compresion("aaaabbaaaabbbbbbbbbbbbbbbbbbbb")
+print(d)
+d=compresion("a")
+print(d)
+
 """
 #no use esto pq era mas complejo de lo q pense, pero est abuena la implementacion del hashCad
 def insertCad(D, key, value):
@@ -46,18 +50,3 @@ def hashCad(key):
         return ord(key)-ord("a")+26
 """
 
-print(ord("a"))
-print(ord("z"))
-print(ord("z")-ord("a"))
-print(ord("A"))
-print(ord("Z"))
-print(ord("Z")-ord("A"))    
-print("###########")
-s="abcdefghijklmnopklrstuwvxyz"
-len(s)
-print("###########")
-
-#d=compresion("abcdefghijklmnopqrstuwvxyz".upper())
-d=compresion("aaabbaaabc")
-d=compresion("a")
-#lee(d)

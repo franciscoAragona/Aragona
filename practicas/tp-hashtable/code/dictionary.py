@@ -1,6 +1,7 @@
 class dicNode:
     key=None
     value=None
+
 def lee(D):
     for i in range(len(D)):
         if D[i] is None:
@@ -58,7 +59,7 @@ def search(D,key):
     #si no es una lista, verifica que no sea nulo y que el unico elemento q haya se el de la key
     elif slot is not None:
         if slot.key == key:
-            return slot
+            return slot.key
     return None
 
 
